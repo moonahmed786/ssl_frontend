@@ -16,7 +16,9 @@
     "start": "PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:quiet": "NODE_OPTIONS=--no-deprecation PORT=3000 react-scripts start",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
@@ -39,7 +41,9 @@
   "proxy": "http://127.0.0.1:8000",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "patch-package": "^8.0.0",
     "postcss": "^8.5.6",
+    "postinstall-postinstall": "^2.1.0",
     "tailwindcss": "^3.4.13"
   }
 }

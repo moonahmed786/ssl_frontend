@@ -1,8 +1,51 @@
-# Getting Started with Create React App
+# SSL Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app (Create React App + Tailwind) that:
+- Shows dataset stats from the backend (`GET /stats`)
+- Lets you search rooms using free text (`POST /rooms/search`)
+- Uses a CRA proxy to the backend at `http://127.0.0.1:8000` to avoid CORS in development
 
-## Available Scripts
+## Quick start
+
+1. Install dependencies:
+    ```bash
+    npm install
+    ```
+2. Start the dev server on port 3000:
+    ```bash
+    npm start
+    ```
+    The CRA proxy is configured in `package.json` ("proxy": "http://127.0.0.1:8000"). Ensure your backend runs at that address.
+
+## Scripts
+
+- `npm start` — runs the app at http://localhost:3000
+- `npm run start:quiet` — same as start but suppresses Node deprecation warnings
+- `npm run build` — production build
+- `npm test` — run tests
+
+## Features
+
+- Dataset Stats panel (totals, rent percentiles, city breakdowns)
+- Search Rooms (free text) with Enter-to-search
+- Displays applied filters and top results with score, rent, amenities
+
+## Backend endpoints (dev)
+
+- `GET /stats`
+- `POST /rooms/search` with body:
+   ```json
+   { "raw_text": "Need room in Lahore G-11, budget 20k" }
+   ```
+   Response includes `rooms` and optional `applied_filters`.
+
+## Troubleshooting
+
+- Deprecation warnings (util._extend): run `npm run start:quiet` to suppress during dev, or run with `NODE_OPTIONS="--trace-deprecation"` to locate the dependency.
+- Tailwind @tailwind warnings in IDE: harmless in CRA; PostCSS processes them at build/dev time.
+- Port already in use: set a different port via `PORT=3001 npm start`.
+
+## Create React App Reference
 
 In the project directory, you can run:
 
@@ -10,7 +53,6 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
